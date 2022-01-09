@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+{% block content %}
+
+<h1>Add new book to catalogue</h1>
+
+<form action ="{%url 'add_book' %}" method="post">
+    {% csrf_token %}
+    {% comment %}
+    {{ form.as_p }}
+    {% endcomment %}
+
+{{form.non_field.errors}}
+
+  <div class="mb-3">
+    <label for="{{ form.title.id_for_label }}">Title, Author :</label>
+      {{ form.title}}
+      <div class="invalid-feedback">
+          {{form.title.errors}}
+      </div>
+  </div>
+    {% comment %}
+    form.title.id_for_label - используется для связки поля с определённым лейблом
+    {{ form.title}} - вывод необходимого input
+    {% endcomment %}
+  <div class="mb-3">
+    <label for="{{ form.content.id_for_label }}">Script :</label>
+      {{ form.content}}
+      <div class="invalid-feedback">
+          {{form.content.errors}}
+      </div>
+  </div>
+  <div class="mb-3">
+    <label for="{{ form.is_published.id_for_label }}">Published :</label>
+      {{ form.is_published}}
+      <div class="invalid-feedback">
+          {{form.is_published.errors}}
+      </div>
+  </div>
+  <div class="mb-3">
+    <label for="{{ form.category.id_for_label }}">Category :</label>
+      {{ form.category}}
+      <div class="invalid-feedback">
+          {{form.category.errors}}
+      </div>
+  </div>
+
+    <button type="submit" class="btn btn-primary btn-bloсk"> Add new book</button>
+</form>
+
+
+{% endblock %}
+

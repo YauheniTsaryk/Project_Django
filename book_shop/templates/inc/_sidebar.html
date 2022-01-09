@@ -1,0 +1,12 @@
+{% load catalogue_tags %} {#тег подключения (импортирования) тегов#}
+{% comment %}
+
+<div class="list-group"> {#вынос шаблона в отдельный файл#}
+    {% get_categories as categories %} {#передача тега в переменную#}
+    {% for item_category in categories %}
+    <a class="list-group-item list-group-item-action" href="{{ item.get_absolute_url }}">{{item_category.title}}</a>
+    {% endfor %}
+</div>
+{% endcomment %}
+
+{% show_categories  %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ catalogue_item.title }}
+{% endblock %}
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+{% block content %}
+
+<div class="card mb-3">
+    <div class="card-header">
+        Category: <a class="list-group-item list-group-item-action"
+                     href="{{ catalogue_item.category.get_absolute_url}}">{{ catalogue_item.category }}</a>
+    </div>
+    <div class="card-body">
+        <div class="media">
+            {% if item.photo %}
+            <img  src="{{ catalogue_item.photo.url }}" alt="" width="900" class="mr-3">
+            {% else %}
+            <img alt="" class="mr-3" src="https://foodtank.com/wp-content/uploads/2021/07/alfons-morales-YLSwjSy7stw-unsplash.jpg", width="900">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="card-title">{{ catalogue_item.title }}</h5>
+                <p class="card-text"> {{ catalogue_item.content|safe|linebreaks}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
